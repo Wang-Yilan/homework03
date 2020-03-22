@@ -48,10 +48,15 @@
     var text = document.getElementById('text');
     window.onload=function(){
         if(localStorage.getItem("bgc")===null){
-            lis[0].style.marginTop=20 + 'px';
-            text.style.backgroundColor=lis[0].style.backgroundColor;
+            lis[0].style.marginTop=20+'px';
+            text.style.background=lis[0].style.background;
         }else{
-            text.style.backgroundColor=localStorage.getItem("bgc");
+            text.style.background=localStorage.getItem("bgc");
+            for(var i=0;i<lis.length;i++){
+                if(localStorage.getItem("bgc")===lis[i].style.background){
+                    lis[i].style.marginTop=0+'px';
+                }
+            }
         }
     }
     for(var i=0;i<lis.length;i++){  
@@ -59,8 +64,8 @@
         lis[i].index=i;
         lis[i].onclick=function(){
             for(var j=0;j<lis.length;j++){
-                    lis[j].style.marginTop=20+'px';
-                }
+                lis[j].style.marginTop=20+'px';
+            }
             text.style.background=colors[this.index];
             localStorage.setItem('bgc',colors[this.index]);
             this.style.marginTop=0+'px';
